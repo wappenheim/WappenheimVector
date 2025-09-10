@@ -22,8 +22,8 @@ wappenheim_vector_create(size_t itemsize)
     return vec;
 }
 
-static int
-vector_resize(Vector *vec, size_t capacity)
+int
+wappenheim_vector_resize(Vector *vec, size_t capacity)
 {
     void *temp;
 
@@ -39,7 +39,7 @@ wappenheim_vector_append(Vector *vec, void *data)
 {
     if (
         vec->capacity <= (vec->length + 1) &&
-        vector_resize(vec, vec->capacity * 2) != 0
+        wappenheim_vector_resize(vec, vec->capacity * 2) != 0
     ) return -1;
     memcpy(
         (void *)((size_t)(vec->data) * vec->length++ * vec->item_size),
@@ -66,7 +66,7 @@ wappenheim_vector_insert(Vector *vec, size_t index, void *data)
 {
     if (
         vec->capacity <= (index + 1) &&
-        vector_resize(vec, index * 2) != 0
+        wappenheim_vector_resize(vec, index * 2) != 0
     ) return -1;
     if (vec->length <= index) vec->length = index + 1;
     memcpy(
@@ -113,7 +113,7 @@ wappenheim_vector_unshift(Vector *vec, void *item)
     if (vec->length == 0) return -1;
     if (
         vec->capacity <= (vec->length + 1) &&
-        vector_resize(vec, vec->capacity * 2) != 0
+        wappenheim_vector_resize(vec, vec->capacity * 2) != 0
     ) return -1;
     memmove(
         (void *)((size_t)vec->data + vec->item_size),
