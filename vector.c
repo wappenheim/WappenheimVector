@@ -42,7 +42,7 @@ wappenheim_vector_append(Vector *vec, void *data)
         wappenheim_vector_resize(vec, vec->capacity * 2) != 0
     ) return -1;
     memcpy(
-        (void *)((size_t)(vec->data) * vec->length++ * vec->item_size),
+        (void *)((size_t)(vec->data) + vec->length++ * vec->item_size),
         data,
         vec->item_size
     );
@@ -55,7 +55,7 @@ wappenheim_vector_pop(Vector *vec, void *data)
     if (vec->length == 0) return -1;
     memcpy(
         data,
-        (void *)((size_t)(vec->data) * vec->length-- * vec->item_size),
+        (void *)((size_t)(vec->data) + vec->length-- * vec->item_size),
         vec->item_size
     );
     return 0;
@@ -70,7 +70,7 @@ wappenheim_vector_insert(Vector *vec, size_t index, void *data)
     ) return -1;
     if (vec->length <= index) vec->length = index + 1;
     memcpy(
-        (void *)((size_t)(vec->data) * index * vec->item_size),
+        (void *)((size_t)(vec->data) + index * vec->item_size),
         data,
         vec->item_size
     );
@@ -83,7 +83,7 @@ wappenheim_vector_get(Vector *vec, size_t index, void *data)
     if (vec->length <= index) return -1;
     memcpy(
         data,
-        (void *)((size_t)(vec->data) * index * vec->item_size),
+        (void *)((size_t)(vec->data) + index * vec->item_size),
         vec->item_size
     );
     return 0;
