@@ -30,6 +30,7 @@ wappenheim_vector_resize(Vector *vec, size_t capacity)
     temp = realloc(vec->data, capacity * vec->item_size);
     if (temp == NULL) return -1;
     vec->data = temp;
+    if (capacity < vec->length) vec->length = capacity;
     vec->capacity = capacity;
     return 0;
 }
