@@ -6,3 +6,8 @@ The implementation of dynamic array in C
 cmake -B build -S .
 cmake --build build
 ```
+
+## Run tests
+```
+ctest --test-dir build/
+```
