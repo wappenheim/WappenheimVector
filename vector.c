@@ -56,7 +56,7 @@ wappenheim_vector_pop(Vector *vec, void *data)
     if (vec->length == 0) return -1;
     memcpy(
         data,
-        (void *)((size_t)(vec->data) + vec->length-- * vec->item_size),
+        (void *)((size_t)(vec->data) + --vec->length * vec->item_size),
         vec->item_size
     );
     return 0;
