@@ -74,3 +74,23 @@ TEST(VectorTest, ShiftAndUnshift) {
 
     wappenheim_vector_destroy(vec);
 }
+
+TEST(VectorTest, Swap) {
+    int i;
+    WappenheimVector *vec;
+
+    vec = wappenheim_vector_create(sizeof(int));
+    EXPECT_FALSE(vec == NULL) << "Unable to create the vector!";
+
+    i = 200;
+    EXPECT_TRUE(wappenheim_vector_insert(vec, 100, &i) == 0) << "Unable to insert!";
+    i = 100;
+    EXPECT_TRUE(wappenheim_vector_insert(vec, 200, &i) == 0) << "Unable to insert!";
+    EXPECT_TRUE(wappenheim_vector_swap(vec, 100, 200) == 0) << "Unable to insert!";
+    EXPECT_TRUE(wappenheim_vector_get(vec, 100, &i) == 0) << "Unable to insert!";
+    EXPECT_TRUE(i == 100) << "Incorrent swap!";
+    EXPECT_TRUE(wappenheim_vector_get(vec, 200, &i) == 0) << "Unable to insert!";
+    EXPECT_TRUE(i == 200) << "Incorrent swap!";
+
+    wappenheim_vector_destroy(vec);
+}
