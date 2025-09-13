@@ -48,3 +48,29 @@ TEST(VectorTest, InsertAndGet) {
     EXPECT_FALSE(wappenheim_vector_get(vec, 697, &i) == 0) << "Get item by index that is bigger than vector length!";
     wappenheim_vector_destroy(vec);
 }
+
+TEST(VectorTest, ShiftAndUnshift) {
+    int i;
+    WappenheimVector *vec;
+
+    vec = wappenheim_vector_create(sizeof(int));
+    EXPECT_FALSE(vec == NULL) << "Unable to create the vector!";
+
+    for (i = 0; i < 1000; ++i) {
+        EXPECT_TRUE(wappenheim_vector_append(vec, &i) == 0) << "Unable to append!";
+    }
+
+    EXPECT_TRUE(wappenheim_vector_shift(vec, &i) == 0) << "Unable to shift!";
+    EXPECT_EQ(i, 0);
+    EXPECT_TRUE(wappenheim_vector_get(vec, 0, &i) == 0) << "Unable to get!";
+    EXPECT_EQ(i, 1);
+    EXPECT_TRUE(wappenheim_vector_pop(vec, &i) == 0) << "Unable to pop!";
+    EXPECT_EQ(i, 999);
+    EXPECT_TRUE(wappenheim_vector_unshift(vec, &i) == 0) << "Unable to shift!";
+    EXPECT_TRUE(wappenheim_vector_get(vec, 0, &i) == 0) << "Unable to get!";
+    EXPECT_EQ(i, 999);
+    EXPECT_TRUE(wappenheim_vector_pop(vec, &i) == 0) << "Unable to pop!";
+    EXPECT_EQ(i, 998);
+
+    wappenheim_vector_destroy(vec);
+}
