@@ -123,8 +123,8 @@ wappenheim_vector_unshift(Vector *vec, void *item)
     );
     ++vec->length;
     memcpy(
-        item,
         vec->data,
+        item,
         vec->item_size
     );
     return 0;
