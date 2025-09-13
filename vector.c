@@ -23,9 +23,15 @@ wappenheim_vector_create(size_t itemsize)
 }
 
 size_t
-wappenheim_vector_length(WappenheimVector *vec)
+wappenheim_vector_length(Vector *vec)
 {
     return vec->length;
+}
+
+size_t
+wappenheim_vector_itemsize(Vector *vec)
+{
+    return vec->item_size;
 }
 
 int
@@ -97,7 +103,7 @@ wappenheim_vector_get(Vector *vec, size_t index, void *data)
 }
 
 int
-wappenheim_vector_swap(WappenheimVector *vec, size_t index, size_t index2)
+wappenheim_vector_swap(Vector *vec, size_t index, size_t index2)
 {
     void *item;
 
