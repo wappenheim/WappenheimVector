@@ -10,7 +10,7 @@ TEST(VectorTest, CreateAndDestroy) {
     vec = wappenheim_vector_create(sizeof(int));
     EXPECT_FALSE(vec == NULL) << "Unable to create the vector!";
     EXPECT_EQ(vec->item_size, sizeof(int)) << "Size of one item is not equal to the defined size!";
-    EXPECT_EQ(vec->length, 0) << "Primary length of the vector must be 0!";
+    EXPECT_EQ(wappenheim_vector_length(vec), 0) << "Primary length of the vector must be 0!";
     wappenheim_vector_destroy(vec);
 }
 
@@ -25,12 +25,12 @@ TEST(VectorTest, AppendAndPop) {
         EXPECT_TRUE(wappenheim_vector_get(vec, (size_t)i, &j) == 0) << "Unable to get!";
         EXPECT_EQ(i, j) << "The appended item is not equal!";
     }
-    EXPECT_EQ(vec->length, 1000) << "The vector length must be 1000!";
+    EXPECT_EQ(wappenheim_vector_length(vec), 1000) << "The vector length must be 1000!";
     for (i = 999; i > -1; --i) {
         EXPECT_TRUE(wappenheim_vector_pop(vec, &j) == 0) << "Unable to pop!";
         EXPECT_EQ(i, j) << "Incorrent item!";
     }
-    EXPECT_EQ(vec->length, 0) << "The vector length must be 0!";
+    EXPECT_EQ(wappenheim_vector_length(vec), 0) << "The vector length must be 0!";
     wappenheim_vector_destroy(vec);
 }
 

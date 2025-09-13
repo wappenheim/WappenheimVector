@@ -22,6 +22,12 @@ wappenheim_vector_create(size_t itemsize)
     return vec;
 }
 
+size_t
+wappenheim_vector_length(WappenheimVector *vec)
+{
+    return vec->length;
+}
+
 int
 wappenheim_vector_resize(Vector *vec, size_t capacity)
 {
