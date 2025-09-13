@@ -91,6 +91,34 @@ wappenheim_vector_get(Vector *vec, size_t index, void *data)
 }
 
 int
+wappenheim_vector_swap(WappenheimVector *vec, size_t index, size_t index2)
+{
+    void *item;
+
+    if (index == index2) return 0;
+    if (vec->length <= index || vec->length <= index2) return -1;
+    item = malloc(vec->item_size);
+    if (item == NULL) return -1;
+    memcpy(
+        item,
+        (void *)((size_t)(vec->data) + index * vec->item_size),
+        vec->item_size
+    );
+    memcpy(
+        (void *)((size_t)(vec->data) + index * vec->item_size),
+        (void *)((size_t)(vec->data) + index2 * vec->item_size),
+        vec->item_size
+    );
+    memcpy(
+        (void *)((size_t)(vec->data) + index2 * vec->item_size),
+        item,
+        vec->item_size
+    );
+    free(item);
+    return 0;
+}
+
+int
 wappenheim_vector_shift(Vector *vec, void *item)
 {
     if (vec->length == 0) return -1;

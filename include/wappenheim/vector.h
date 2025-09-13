@@ -20,6 +20,7 @@ int wappenheim_vector_append(WappenheimVector *, void *data);
 int wappenheim_vector_pop(WappenheimVector *, void *data);
 int wappenheim_vector_insert(WappenheimVector *, size_t index, void *data);
 int wappenheim_vector_get(WappenheimVector *, size_t index, void *data);
+int wappenheim_vector_swap(WappenheimVector *, size_t index, size_t index2);
 int wappenheim_vector_shift(WappenheimVector *, void *item);
 int wappenheim_vector_unshift(WappenheimVector *, void *item);
 void wappenheim_vector_destroy(WappenheimVector *);
