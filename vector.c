@@ -28,6 +28,25 @@ wappenheim_vector_length(Vector *vec)
     return vec->length;
 }
 
+Vector *
+wappenheim_vector_copy(Vector *vec)
+{
+    Vector *newvec;
+
+    newvec = malloc(sizeof(Vector));
+    if (newvec == NULL) {
+        return NULL;
+    }
+    newvec->data = malloc(vec->item_size * vec->capacity);
+    if (newvec->data == NULL) {
+        free(vec);
+        return NULL;
+    }
+    memcpy(newvec->data, vec->data, vec->item_size * vec->length);
+    return newvec;
+}
+
+
 size_t
 wappenheim_vector_itemsize(Vector *vec)
 {

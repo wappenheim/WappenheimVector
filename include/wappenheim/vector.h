@@ -15,6 +15,7 @@ typedef struct {
 } WappenheimVector;
 
 WappenheimVector *wappenheim_vector_create(size_t itemsize);
+WappenheimVector *wappenheim_vector_copy(WappenheimVector *);
 size_t wappenheim_vector_length(WappenheimVector *);
 size_t wappenheim_vector_itemsize(WappenheimVector *);
 int wappenheim_vector_resize(WappenheimVector *, size_t capacity);
